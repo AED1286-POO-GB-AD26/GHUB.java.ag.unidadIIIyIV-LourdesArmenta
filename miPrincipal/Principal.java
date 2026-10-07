@@ -59,6 +59,28 @@ public class Principal {
         System.out.println("Salario de e2:"+e2.getSalario());
         System.out.println();
 
+        //DEMOSTRACIÓN DE CODIGO SOBREESCRITO///
+        System.out.println("Persona 1:"+p1.mostrarDatos());
+        System.out.println("Persona 2:"+p2.mostrarDatos());
+        System.out.println("Persona 3:"+a1.mostrarDatos());
+        System.out.println("Persona 4:"+a2.mostrarDatos());
+        System.out.println("Persona 5:"+e1.mostrarDatos());
+        System.out.println("Persona 6:"+e2.mostrarDatos());
+        System.out.println();
+        //DEMOSTRACION DEL METODO toString
+        int a = 5;
+        System.out.println("Numero: "+a);
+        System.out.println("Persona 1:"+p1.toString());
+        System.out.println("Persona 2:"+p2);
+        System.out.println(a1);
+        System.out.println(a2);
+        System.out.println(e1);
+        System.out.println(e2.toString());
+        System.out.println();
+
+
+
+
 
 
 

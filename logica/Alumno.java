@@ -22,6 +22,18 @@ public class Alumno extends Persona{
     public void setMatricula(String matricula){
         this.matricula = matricula;
     }
-    //mostrar datos
+    //sobreEscribir mostrarDatos
+    @Override 
+    public String mostrarDatos(){
+        return "Alumno: Nombre"+super.getNombre()+" Edad:"+super.getEdad()+" años "+
+        " Matricula:"+matricula;
+
+    }
+    @Override 
+    public String toString(){
+        return "Alumno Nombre:"+super.getNombre()+" Edad:"+super.getEdad()+" años "+ 
+              "Matricula:"+matricula;
+    }
+
 
 }

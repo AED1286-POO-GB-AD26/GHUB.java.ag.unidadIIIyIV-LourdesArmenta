@@ -32,4 +32,13 @@ public class Persona{
         this.edad = edad;
     }
     //mostrar datos
+    public String mostrarDatos(){
+        return "Nombre:"+nombre+" Edad:"+edad+" años ";
+    }
+    @Override 
+    public String toString(){
+        return "Persona Nombre:"+nombre+" Edad:"+edad+" años ";
+    }
+   
+
 }
