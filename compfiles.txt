@@ -1,5 +1,8 @@
+./logica/Revista.java
+./logica/Publicacion.java
 ./logica/Alumno.java
 ./logica/Persona.java
 ./logica/Empleado.java
+./logica/Libro.java
 ./miPrincipal/Principal.java
 ./miTest/AppTest.java

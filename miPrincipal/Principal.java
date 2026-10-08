@@ -2,10 +2,13 @@ package miPrincipal;
 import logica.Persona;
 import logica.Alumno;
 import logica.Empleado;
+import logica.Publicacion;
+import logica.Revista;
+import logica.Libro;
+import java.time.LocalDate;
 
 public class Principal {
     
-
     public static void main(String[] args) {
         System.out.println("==============================================");
         System.out.println("DEMOSTRACIÓN DE HERENCIA DE CLASE BASE PERSONA");
@@ -77,6 +80,19 @@ public class Principal {
         System.out.println(e1);
         System.out.println(e2.toString());
         System.out.println();
+
+        //DEMOSTRACION DE LA JERARQUIA DE CLASES PUBLICACION:LIBRO Y REVISTA
+        System.out.println("=================================================================================");
+        System.out.println("DEMOSTRACIÓN DE HERENCIA DE CLASE BASE PUBLICACION Y LAS DERIVADA:REVISTA Y LIBRO");
+        System.out.println("=================================================================================");
+        LocalDate fec1 = LocalDate.of(2009,8,2);
+        Publicacion pub1 = new Publicacion("Alfaguara",fec1);
+        Libro lib1 = new Libro(pub1.getEditorial(),pub1.getFechaPub(),"ISBN-1","Monica Lavin","Yo, la Peor");
+        Revista rev1 = new Revista("National Geographic",LocalDate.of(2020,12,1),"Animales Nocturnos","Trimestral");
+        System.out.println(pub1);
+        System.out.println(lib1);
+        System.out.println("Editorial:"+rev1.getEditorial()+" "+
+                        rev1.getFechaPub()+" "+rev1);
 
 
 
