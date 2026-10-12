@@ -94,6 +94,21 @@ public class Principal {
         System.out.println("Editorial:"+rev1.getEditorial()+" "+
                         rev1.getFechaPub()+" "+rev1);
 
+        
+        System.out.println("=================================================================================");
+        System.out.println("DEMOSTRACIÓN DE HERENCIA DE CLASE BASE FECHA Y LA FECHADETALLADA");
+        System.out.println("=================================================================================");
+        Fecha f1 = new Fecha(12,10,2026);
+        System.out.println(f1.toString());
+        Fecha f2 = new Fecha();
+        System.out.println(f2);
+        f2.setAnio(2026);
+        f2.setMes(12);
+        f2.setDia(24);
+        System.out.println(f2); 
+        FechaDetallada f3 = new FechaDetallada(12,10 , 2026);
+        System.out.println(f3);
+
 
 
 
