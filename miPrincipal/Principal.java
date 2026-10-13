@@ -6,6 +6,8 @@ import logica.Publicacion;
 import logica.Revista;
 import logica.Libro;
 import java.time.LocalDate;
+import logica.Fecha;
+import logica.FechaDetallada;
 
 public class Principal {
     
@@ -106,22 +108,33 @@ public class Principal {
         f2.setMes(12);
         f2.setDia(24);
         System.out.println(f2); 
-        FechaDetallada f3 = new FechaDetallada(12,10 , 2026);
+        FechaDetallada f3 = new FechaDetallada(12,10 ,2026);
         System.out.println(f3);
 
+        FechaDetallada f4 = new FechaDetallada();
+        System.out.println(f4);
 
+        int b = 5;
+        int c = 5;
+        System.out.println("b es "+b+ " igual a c es "+c+" ? "+ (b==c));
 
+        String c1 = "hola";
+        String c2 = "hola";
 
+        System.out.println("c1 es "+c1+ " igual a c2 es "+c2+" ? "+ (c1.equals(c2)));
 
+        System.out.println("f1 es "+f1+ " igual a f3 es "+f3+" ? "+ (f1.equals(f3)));
 
+        FechaDetallada f5 = new FechaDetallada(1,1,2026);
+        FechaDetallada f6 = new FechaDetallada(2,1,2026);
+        System.out.println("La fecha:"+f5+" es igual a la fecha;"+f6+" ? "+f5.equals(f6));
 
+        f6.setDia(1);
+        System.out.println("La fecha:"+f5+" es igual a la fecha;"+f6+" ? "+f5.equals(f6));
 
-
-
-
-
-
-
+        System.out.println("La fecha f5:"+f5+" es bisiesto? "+Fecha.esBisiesto(f5.getAnio()));
+        f5.setAnio(2028);
+        System.out.println("La fecha f5:"+f5+" es bisiesto? "+Fecha.esBisiesto(f5.getAnio()));
         
     }
 }
