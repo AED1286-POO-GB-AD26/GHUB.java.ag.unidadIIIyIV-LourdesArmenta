@@ -8,6 +8,8 @@ import logica.Libro;
 import java.time.LocalDate;
 import logica.Fecha;
 import logica.FechaDetallada;
+import logica.Ventana;
+import logica.VentanaEspecial;
 
 public class Principal {
     
@@ -96,7 +98,7 @@ public class Principal {
         System.out.println("Editorial:"+rev1.getEditorial()+" "+
                         rev1.getFechaPub()+" "+rev1);
 
-        
+     
         System.out.println("=================================================================================");
         System.out.println("DEMOSTRACIÓN DE HERENCIA DE CLASE BASE FECHA Y LA FECHADETALLADA");
         System.out.println("=================================================================================");
@@ -135,6 +137,57 @@ public class Principal {
         System.out.println("La fecha f5:"+f5+" es bisiesto? "+Fecha.esBisiesto(f5.getAnio()));
         f5.setAnio(2028);
         System.out.println("La fecha f5:"+f5+" es bisiesto? "+Fecha.esBisiesto(f5.getAnio()));
+
+        /* 
+        //DEJA DE FUNCIONA PORQUE AHORA EL METODO getMeses es un método estático, es decir
+        //ES UN METODO QUE CORRESPONDE A LA CLASE Y NO A LOS OBJETOS
+        String arreglo[]=f6.getMeses();
+        System.out.println("Los meses de la fecha:"+f6+" son:");
+        for(int i=0;i<arreglo.length;i++){
+            System.out.print(arreglo[i]+" ");
+            
+        }
+        System.out.println();
+        
+        arreglo = f5.getMeses();
+        System.out.println("Los meses de la fecha:"+f5+" son:");
+        for(int i=0;i<arreglo.length;i++){
+            System.out.print(arreglo[i]+" ");
+            
+        }
+        System.out.println();
+        */
+
+        System.out.println("Los meses de la fecha detallada son:");
+        /* 
+        //DEJO DE FUNCIONAR PORQUE AHORA el método getMeses, me retorna
+        //una cadena formado por los elementos del arreglo
+        String arreglo[] = FechaDetallada.getMeses();
+        for(int i=0;i<arreglo.length;i++){
+            System.out.print(arreglo[i]+" ");
+            
+        }
+        System.out.println();
+        */
+       System.out.println(FechaDetallada.getMeses());
+       System.out.println("Cantidad de Fechas Detalladas creada:"+FechaDetallada.getCant());
+
+       System.out.println("================================================");
+        System.out.println("DEMOSTRACIÓN DE LA SOBRECARGA EN CLASES DERIVADA");
+        System.out.println("===============================================");
+
+        VentanaEspecial mv = new VentanaEspecial();
+        Ventana w = new Ventana();
+
+        mv.copiar("*******",10,15);
+        mv.copiar(w);
+        mv.copiar('+',20,5,10);
+
+
+
+
+
+
         
     }
 }
