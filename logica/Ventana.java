@@ -13,6 +13,11 @@ public class Ventana{
         System.out.println();
 
     }
+    protected void copiar(String cadena){
+        System.out.println("Estoy en el método copiar de la clase Ventada con"+
+            " un parámetro tipo cadena"
+        );
+    }
    
 
 

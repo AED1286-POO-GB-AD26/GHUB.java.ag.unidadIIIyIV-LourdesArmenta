@@ -10,6 +10,10 @@ import logica.Fecha;
 import logica.FechaDetallada;
 import logica.Ventana;
 import logica.VentanaEspecial;
+import logica.Barco;
+import logica.DeVapor;
+import logica.Velero;
+import logica.Carguero;
 
 public class Principal {
     
@@ -182,6 +186,23 @@ public class Principal {
         mv.copiar("*******",10,15);
         mv.copiar(w);
         mv.copiar('+',20,5,10);
+
+        mv.copiar("hola");
+
+        System.out.println("======================================================================");
+        System.out.println("DEMOSTRACIÓN DE CONVERSIÓN ENTRE OBJETOS DE CLASE DERIVADA Y CLASE BASE");
+        System.out.println("========================================================================");
+
+        Barco barco1 = new Barco();
+        System.out.println(barco1.saludo("hi"));
+        DeVapor dv1 = new DeVapor();
+        System.out.println(dv1.saludo("nameste"));
+        Velero v1 = new Velero();
+        System.out.println(v1.saludo("kon'nichiwa"));
+        Carguero carg1 = new Carguero();
+        System.out.println(carg1.saludo("hallo"));
+        // PENDIENTE HACER LAS CONVERSIONES DE TIPO
+
 
 
 

@@ -12,6 +12,12 @@ public class VentanaEspecial extends Ventana{
         System.out.println("ESTOY SOBREESCRIBIENDO EL METODO COPIAR CON UN ARGUMENTO TIPO VENTANA");
 
     }
+
+    public void copiar(String p){
+        super.copiar(p);
+        System.out.println("Estoy en el método copiar de la clase derivada VENTANA ESPECIAL "+
+            " y el argumento es "+p);
+    }
     
 
 }

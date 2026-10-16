@@ -1,0 +1,7 @@
+package logica;
+public class DeVapor extends Barco{
+    public DeVapor(){
+        System.out.println("Se crea la parte del barco de vapor");
+    }
+
+}
