@@ -201,7 +201,48 @@ public class Principal {
         System.out.println(v1.saludo("kon'nichiwa"));
         Carguero carg1 = new Carguero();
         System.out.println(carg1.saludo("hallo"));
-        // PENDIENTE HACER LAS CONVERSIONES DE TIPO
+        
+        // CONVERSIONES DE TIPO
+        barco1 = v1; //conversion automática DE UNA DERVIDA A SU BASE
+
+        barco1 = dv1; //conversion automatica DE UNA DERIVADA A SU BASE
+
+        barco1 = carg1;//conversion automatica de UNA DERVIDA A SU BASEB
+
+        Barco b2;
+        DeVapor dv2;
+        Carguero carg2 = new Carguero();
+        Velero v2 = new Velero();
+        b2 = carg2; //conversio automática
+        dv2 = carg2; // conversion automatica
+        //v2 = carg2; //no se puede convertir porque no esta dentro de su jerarquia
+        
+        Barco[] arreglo_barcos = new Barco[3];
+        DeVapor dv3 = new DeVapor();
+        System.out.println();
+        Velero v3 = new Velero();
+        Carguero carg3 = new Carguero();
+        arreglo_barcos[0] = dv3;
+        arreglo_barcos[1] = v3;
+        arreglo_barcos[2] = carg3;
+        for(int i=0;i<arreglo_barcos.length;){
+            arreglo_barcos[i++].alarma();
+        
+        }
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
 
 
 

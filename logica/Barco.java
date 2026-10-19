@@ -7,5 +7,8 @@ public class Barco{
     public String saludo(String saludo){
         return "Hola, soy un Barco y te mando el saludo:"+saludo;
     }
+    public void alarma(){
+        System.out.println("\tSOS desde un Barco");
+    }
 
 }
