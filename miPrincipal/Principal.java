@@ -14,6 +14,7 @@ import logica.Barco;
 import logica.DeVapor;
 import logica.Velero;
 import logica.Carguero;
+import java.util.ArrayList;
 
 public class Principal {
     
@@ -230,26 +231,68 @@ public class Principal {
         
         }
 
+        System.out.println("==================================");
+        System.out.println("    DEMOSTRACION DE ARRAYLIST     ");
+        System.out.println("==================================");
+        ArrayList<String> lista_nombres = new ArrayList<String>();
+        //inserto elementos
+        lista_nombres.add("Ana");
+        lista_nombres.add("Luis");
+        lista_nombres.add("Carlos");
+        //recupero los elementos
+        System.out.println(lista_nombres.get(2));
+        System.out.println(lista_nombres.get(1));
+        System.out.println(lista_nombres.get(0));
 
+        //Recorro todos los elementos de la coleccion
+        System.out.println();
+        for(int i=0;i<lista_nombres.size();i++){
+            System.out.println(lista_nombres.get(i));
+        }
+        System.out.println();
 
+        ArrayList<String> lista_frutas = new ArrayList<>();
+        lista_frutas.add("manzana");
+        lista_frutas.add("banana");
+        lista_frutas.add("naranja");
+        for(int i=0;i<lista_frutas.size();i++){
+            System.out.println(lista_frutas.get(i));
+        }
+        lista_frutas.add(1,"fresa");
+        System.out.println("Recorrido después de insertar fresa en la posion 1:");
+        for(int i=0;i<lista_frutas.size();i++){
+            System.out.println(lista_frutas.get(i));
+        }
+        String fruta= lista_frutas.get(2);
+        System.out.println("El elemento que se encuentra en la posicion 2 ="+fruta);
 
+        int cantidad = lista_frutas.size();
+        System.out.println("El tamaño de la lista de frutas="+cantidad);
 
-
-
-
-
-
-
+        //set se utiliza para reemplazar elementos
+        lista_frutas.set(0,"Pera");
+        System.out.println("Lista de frutas después de reemplazar la posicion 0:");
+        for(int i=0;i<lista_frutas.size();i++){
+            System.out.println(lista_frutas.get(i));
+        }
+        System.out.println(lista_frutas.toString());
+        lista_frutas.remove(1);
+        System.out.println(lista_frutas);
+        lista_frutas.remove("banana");
+        System.out.println(lista_frutas);
+        if (lista_frutas.remove("berry"))
+            System.out.println("Elemento eliminado");
+        else{
+            System.out.println("No se encontro el elemento");
+        }
+        System.out.println(lista_frutas);
+        //System.out.println(lista_frutas.get(2));
+        int pos= lista_frutas.indexOf("naranja");
+        System.out.println("La posicion de naranja = "+pos);
+        pos= lista_frutas.indexOf("Naranja");
+        System.out.println("La posicion de Naranja = "+pos);
         
 
-
-
-
-
-
-
-
-
-        
+       
     }
 }

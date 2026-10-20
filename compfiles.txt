@@ -4,7 +4,6 @@
 ./logica/FechaDetallada.java
 ./logica/DeVapor.java
 ./logica/Alumno.java
-./logica/Xbox.java
 ./logica/Fecha.java
 ./logica/Dispositivo.java
 ./logica/Persona.java
