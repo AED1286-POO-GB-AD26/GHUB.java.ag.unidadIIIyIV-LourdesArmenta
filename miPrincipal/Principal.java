@@ -291,8 +291,19 @@ public class Principal {
         System.out.println("La posicion de naranja = "+pos);
         pos= lista_frutas.indexOf("Naranja");
         System.out.println("La posicion de Naranja = "+pos);
-        
-
-       
+        boolean encontrado = lista_frutas.contains("naranja");
+        System.out.println(encontrado);
+        encontrado = lista_frutas.contains("fresa");
+        System.out.println(encontrado);
+        if(lista_frutas.isEmpty())
+            System.out.println("La lista esta vacia");
+        else
+            System.out.println("La lista NO ESTA VACIA");
+        lista_frutas.clear();
+        if(lista_frutas.isEmpty())
+            System.out.println("La lista esta vacia");
+        else
+            System.out.println("La lista NO ESTA VACIA");
+   
     }
 }
