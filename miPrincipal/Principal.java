@@ -5,6 +5,9 @@ import logica.Empleado;
 import logica.Publicacion;
 import logica.Revista;
 import logica.Libro;
+
+import static org.junit.jupiter.api.DynamicTest.stream;
+
 import java.time.LocalDate;
 import logica.Fecha;
 import logica.FechaDetallada;
@@ -16,6 +19,8 @@ import logica.Velero;
 import logica.Carguero;
 import java.util.ArrayList;
 
+import logica.Estado;
+import logica.DiaSemana;
 public class Principal {
     
     public static void main(String[] args) {
@@ -304,6 +309,92 @@ public class Principal {
             System.out.println("La lista esta vacia");
         else
             System.out.println("La lista NO ESTA VACIA");
+
+        System.out.println("==================================");
+        System.out.println("    DEMOSTRACION DE ENUM          ");
+        System.out.println("==================================");
+        //forma 1 utlizando enum
+        Estado estado = Estado.ACEPTADA;
+        System.out.println("El estado = "+estado);
+        //forma 2 utilizando String
+        String estado1 = "PEENDIENTE";
+        System.out.println("El estado = "+estado1);
+
+        DiaSemana dia = DiaSemana.MIERCOLES;
+        if(dia==DiaSemana.MIERCOLES){
+            System.out.println("Estoy a mitad de la semana");
+        }
+        System.out.println("Dia de la semana:"+dia);
+        System.out.println("Dia de la semana:"+dia.name());
+        System.out.println("Dia de la semana:"+dia.ordinal());
+        dia = DiaSemana.VIERNES;
+        System.out.println("Dia de la semana:"+dia.ordinal());
+        DiaSemana arreglo_dias[] = DiaSemana.values();
+        //recorro el arreglo de dias de la semana
+        for(int i=0;i<arreglo_dias.length;i++){
+            System.out.println("Dia :"+i+":"+arreglo_dias[i].name());
+        }
+        System.out.println("Recorro el arreglo utilizando iteradores:");
+        for(DiaSemana d:arreglo_dias){
+            System.out.println("Dia: "+d.name());
+        }
+        switch (dia) {
+            case LUNES:
+                System.out.println("Hola, hoy es Lunes");
+                break;
+            case MARTES:
+                 System.out.println("Hola, hoy es Martes");
+                 break;
+            case MIERCOLES:
+                 System.out.println("Hola, hoy es Miercoles");
+                 break;
+            case JUEVES:
+                 System.out.println("Hola, hoy es Jueves");
+                 break;
+            case VIERNES:
+                 System.out.println("Hola, hoy es Viernes");
+                 break;
+            case SABADO:
+                 System.out.println("Hola, hoy es Sábado");
+                 break;
+            case DOMINGO:
+                 System.out.println("Hola, hoy es Domingo");
+                 break;
+            default:
+                System.out.println("Incorrecto!!!");
+                break;
+        }
+        dia = DiaSemana.MARTES;
+
+        Estado edo1 = Estado.EN_REVISION;
+        switch (edo1) {
+            case ACEPTADA:
+                System.out.println("Solicitua aceptada....");
+                break;
+            case EN_REVISION:
+                System.out.println("Solicitud en revisión....");
+                
+                break;
+            case RECHAZADA:
+                System.out.println("Solicitua rechazada....");
+                
+                break;
+            case RECIBIDA:
+                System.out.println("Solicitua recibida....");
+                
+                break;
+        
+            default:
+                break;
+        }
+
+        Estado lista_estados[] = Estado.values();
+        System.out.println("Recorro los valores de estados:");
+        for(Estado ele: lista_estados){
+            System.out.println(ele);
+        }
+        //REVISAR RETO CLASE SOLICITUD
+        //PENDIENTE HACER EJERCICIO TAREA CON LOS ENUM
    
     }
 }

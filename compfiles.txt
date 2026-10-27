@@ -4,6 +4,7 @@
 ./logica/FechaDetallada.java
 ./logica/DeVapor.java
 ./logica/Alumno.java
+./logica/Estado.java
 ./logica/Fecha.java
 ./logica/Dispositivo.java
 ./logica/Persona.java
@@ -13,6 +14,7 @@
 ./logica/Consola.java
 ./logica/Barco.java
 ./logica/Empleado.java
+./logica/DiaSemana.java
 ./logica/Velero.java
 ./logica/Libro.java
 ./miPrincipal/Principal.java

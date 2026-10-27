@@ -50,6 +50,25 @@ public class Biblioteca{
         }
         return null;
     }
+    public Libro[] consultarTodosLosLibros() {
+        Libro copia[] = new Libro[cardinalLibros];
+        for (int i = 0; i < cardinalLibros; i++) {
+            copia[i] = listaLibros[i];
+        }
+        return copia;
+    }
+
+    public void eliminarLibro(String idEjemplor){     
+    
+
+    }
+    public void eliminarLibro(Libro libro){
+
+    }
+    private void eliminarLibroInterno(Libro libro){
+
+    }
+
 
 
 }
