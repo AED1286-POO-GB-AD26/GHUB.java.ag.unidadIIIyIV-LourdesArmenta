@@ -6,8 +6,6 @@ import logica.Publicacion;
 import logica.Revista;
 import logica.Libro;
 
-import static org.junit.jupiter.api.DynamicTest.stream;
-
 import java.time.LocalDate;
 import logica.Fecha;
 import logica.FechaDetallada;
@@ -21,6 +19,12 @@ import java.util.ArrayList;
 
 import logica.Estado;
 import logica.DiaSemana;
+import logica.Solicitud;
+
+import logica.Animal;
+import logica.Perro;
+import logica.Gato;
+import logica.Pajaro;
 public class Principal {
     
     public static void main(String[] args) {
@@ -365,7 +369,6 @@ public class Principal {
                 break;
         }
         dia = DiaSemana.MARTES;
-
         Estado edo1 = Estado.EN_REVISION;
         switch (edo1) {
             case ACEPTADA:
@@ -373,17 +376,13 @@ public class Principal {
                 break;
             case EN_REVISION:
                 System.out.println("Solicitud en revisión....");
-                
                 break;
             case RECHAZADA:
                 System.out.println("Solicitua rechazada....");
-                
                 break;
             case RECIBIDA:
                 System.out.println("Solicitua recibida....");
-                
                 break;
-        
             default:
                 break;
         }
@@ -393,8 +392,49 @@ public class Principal {
         for(Estado ele: lista_estados){
             System.out.println(ele);
         }
-        //REVISAR RETO CLASE SOLICITUD
-        //PENDIENTE HACER EJERCICIO TAREA CON LOS ENUM
-   
+        Solicitud sol = new Solicitud(125,"Solicitud de Empleo",
+                        "Juan Lopez",Estado.RECIBIDA);
+        System.out.println(sol);
+        sol.setEstado(Estado.EN_REVISION);
+        System.out.println(sol);
+        sol.setEstado(Estado.ACEPTADA);
+        System.out.println(sol);
+        edo1 = sol.getEstado();
+
+        switch (edo1) {
+            case ACEPTADA:
+                System.out.println("Solicitua aceptada....");
+                break;
+            case EN_REVISION:
+                System.out.println("Solicitud en revisión....");
+                break;
+            case RECHAZADA:
+                System.out.println("Solicitua rechazada....");
+                break;
+            case RECIBIDA:
+                System.out.println("Solicitua recibida....");
+                break;
+            default:
+                break;
+        }
+        System.out.println("=====================================");
+        System.out.println("    DEMOSTRACION DE POLIMORFISMO     ");
+        System.out.println("=====================================");
+        //crear un arreglo de animales
+        Gato gato = new Gato();
+        Pajaro pajaro = new Pajaro();
+        Perro perro = new Perro();
+        Animal [] arreglo_animales ={perro,gato,pajaro};
+        Animal [] arreglo_animales2= {new Gato(),new Pajaro(),new Perro()};
+        //recorrer el arreglo de aninales 1}
+        System.out.println("Recorro el primer arreglo de animales:");
+        for(int i=0;i<arreglo_animales.length;i++){
+            arreglo_animales[i].hacerSonido();
+        }
+        //recorrer el arreglo de aninales 2
+        System.out.println("Recorro el segundo arreglo de animales:");
+        for(int i=0;i<arreglo_animales2.length;i++){
+            arreglo_animales2[i].hacerSonido();
+        }
     }
 }

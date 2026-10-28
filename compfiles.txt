@@ -1,8 +1,10 @@
 ./logica/Revista.java
+./logica/Animal.java
 ./logica/Ventana.java
 ./logica/Publicacion.java
 ./logica/FechaDetallada.java
 ./logica/DeVapor.java
+./logica/Solicitud.java
 ./logica/Alumno.java
 ./logica/Estado.java
 ./logica/Fecha.java
@@ -10,6 +12,9 @@
 ./logica/Persona.java
 ./logica/VentanaEspecial.java
 ./logica/Carguero.java
+./logica/Gato.java
+./logica/Pajaro.java
+./logica/Perro.java
 ./logica/VideoConsola.java
 ./logica/Consola.java
 ./logica/Barco.java
