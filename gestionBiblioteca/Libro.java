@@ -1,27 +1,22 @@
 package gestionBiblioteca;
 public class Libro extends Publicacion{
-    private String idEjemplar;
     private String isbn;
-    private String titulo;
     private String autor;
-    private boolean disponible;
+    private Estado estado;
 
     public Libro() {
         super();
-        idEjemplar = "NA";
+        setIdEjemplar("NA");
         isbn = "NA";
-        //titulo = "Desconocido";
         autor = "Desconocido";
-        disponible = true;
+        estado = Estado.DISPONIBLE;
     }
-    
 
     public Libro(String titulo, int anio, String idEjemplar, String isbn, String autor) {
-        super(titulo, anio);
-        this.idEjemplar = idEjemplar;
+        super(idEjemplar, titulo, anio);
         this.isbn = isbn;
         this.autor = autor;
-        this.disponible = true;
+        this.estado = Estado.DISPONIBLE;
     }
 
 
@@ -42,23 +37,15 @@ public class Libro extends Publicacion{
             System.out.println("El autor no puede ser nulo o estar en blanco");
             return;
         }
-        this.idEjemplar = idEjemplar;
+        super.setIdEjemplar(idEjemplar);
         this.isbn = isbn;
-        this.titulo = titulo;
+        super.setTitulo(titulo);
         this.autor = autor;
-        this.disponible = true;
-    }
-
-    public String getIdEjemplar() {
-        return idEjemplar;
+        this.estado = Estado.DISPONIBLE;
     }
 
     public String getIsbn() {
         return isbn;
-    }
-
-    public String getTitulo() {
-        return titulo;
     }
 
     public String getAutor() {
@@ -66,27 +53,25 @@ public class Libro extends Publicacion{
     }
 
     public boolean estarDisponible() {
-        return disponible;
+        return estado == Estado.DISPONIBLE;
+    }
+
+    public Estado getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Estado estado) {
+        this.estado = estado;
     }
 
     public String devolverDatos() {
-        String estado;
-        if (disponible) {
-            estado = "DISPONIBLE";
-        } else {
-            estado = "PRESTADO";
-        }
-        return idEjemplar + " - " + isbn + " - " + titulo + " (" + autor + ") - " +
-                estado;
+        return getIdEjemplar() + " - ISBN: " + isbn + " - " + getTitulo() + " ("
+                + getAnio() + ", " + autor + ") - " + estado;
     }
-
 
     @Override
     public int calcularTiempoPrestano() {
         
         return 30;
     }
-    
-
-
 }

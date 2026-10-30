@@ -13,10 +13,10 @@ public class Principal{
         bib1.registrarLibro(lib3);
         bib1.registrarLibro("4","ISBN-4","Harry Potter","Joanne Rowllin");
         bib1.registrarLibro("4","ISBN-5","El Señor de los Anillos","John Ronald Reuel");
-        Libro lista[]= bib1.consultarTodosLosLibros();
-        for (int i=0;i<lista.length;i++){
-            System.out.println("Libro:"+lista[i].getIdEjemplar()+" "+lista[i].getIsbn()+
-                " "+lista[i].getTitulo()+" "+lista[i].getAutor());
+        java.util.ArrayList<Libro> lista = bib1.consultarTodosLosLibros();
+        for (Libro libro : lista) {
+            System.out.println("Libro:" + libro.getIdEjemplar() + " " + libro.getIsbn() +
+                " " + libro.getTitulo() + " " + libro.getAutor());
         }
         Libro libro = bib1.buscarLibroPorIdEjemplar("3");
         if(libro != null){

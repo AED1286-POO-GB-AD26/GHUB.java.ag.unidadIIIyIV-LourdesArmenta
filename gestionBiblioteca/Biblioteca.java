@@ -1,14 +1,13 @@
 package gestionBiblioteca;
+import java.util.ArrayList;
+
 public class Biblioteca{
-    private Libro listaLibros[];
-    private static final int M = 20;
-    private int cardinalLibros;
-    private int capacidadLibros;
+    private final ArrayList<Publicacion> publicaciones;
+
     public Biblioteca(){
-        listaLibros = new Libro[M];
-        cardinalLibros = 0;
-        capacidadLibros = M;
+        publicaciones = new ArrayList<>();
     }
+
     // Metodo publico delegado: crea el objeto Libro y delega el registro en la
     // sobrecarga que recibe el objeto completo.
     public void registrarLibro(String idEjemplar, String isbn, String titulo, String autor) {
@@ -17,24 +16,66 @@ public class Biblioteca{
 
     // Punto comun de registro para las distintas formas publicas de recibir un libro.
     public void registrarLibro(Libro libro) {
-        registrarLibroInterno(libro);
+        registrarPublicacion(libro);
     }
 
-    // Metodo privado delegado que concentra la validacion y el almacenamiento.
-    // Centralizar esta logica evita duplicarla y mantiene una sola regla de registro.
-    private void registrarLibroInterno(Libro libro) {
-        if (cardinalLibros == capacidadLibros) {
-            Libro nuevaLista[] = new Libro[capacidadLibros + M];
-            for (int i = 0; i < capacidadLibros; i++) {
-                nuevaLista[i] = listaLibros[i];
-            }
-            capacidadLibros += M;
-            listaLibros = nuevaLista;
+    public boolean registrarRevista(String idEjemplar, String issn, String titulo, int anio,
+            String periodicidad) {
+        return registrarPublicacion(new Revista(idEjemplar, issn, titulo, anio, periodicidad));
+    }
+
+    public boolean registrarPublicacion(Publicacion publicacion) {
+        if (!datosValidos(publicacion)) {
+            System.out.println("No se puede registrar una publicación con datos incompletos.");
+            return false;
         }
-        if (!existeLibro(libro.getIdEjemplar())) {
-            listaLibros[cardinalLibros++] = libro;
-        } else {
-            System.out.println("Ya existe un ejemplar con el id: " + libro.getIdEjemplar());
+        if (existePublicacion(publicacion.getIdEjemplar())) {
+            System.out.println("Ya existe un ejemplar con el id: " + publicacion.getIdEjemplar());
+            return false;
+        }
+        publicaciones.add(publicacion);
+        return true;
+    }
+
+    private boolean estaVacio(String texto) {
+        return texto == null || texto.isBlank();
+    }
+
+    private boolean datosValidos(Publicacion publicacion) {
+        if (publicacion == null || estaVacio(publicacion.getIdEjemplar())
+                || estaVacio(publicacion.getTitulo())) {
+            return false;
+        }
+        if (publicacion instanceof Libro libro) {
+            return !estaVacio(libro.getIsbn()) && !estaVacio(libro.getAutor());
+        }
+        if (publicacion instanceof Revista revista) {
+            return !estaVacio(revista.getIssn()) && !estaVacio(revista.getPeriodicidad());
+        }
+        return false;
+    }
+
+    public boolean existePublicacion(String idEjemplar) {
+        return buscarPublicacionPorIdEjemplar(idEjemplar) != null;
+    }
+
+    public Publicacion buscarPublicacionPorIdEjemplar(String idEjemplar) {
+        for (Publicacion publicacion : publicaciones) {
+            if (publicacion.getIdEjemplar().equals(idEjemplar)) {
+                return publicacion;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Publicacion> consultarTodasLasPublicaciones() {
+        return new ArrayList<>(publicaciones);
+    }
+
+    public void eliminarPublicacion(String idEjemplar) {
+        Publicacion publicacion = buscarPublicacionPorIdEjemplar(idEjemplar);
+        if (publicacion != null) {
+            publicaciones.remove(publicacion);
         }
     }
 
@@ -43,32 +84,34 @@ public class Biblioteca{
     }
 
     public Libro buscarLibroPorIdEjemplar(String idEjemplar) {
-        for (int i = 0; i < cardinalLibros; i++) {
-            if (listaLibros[i].getIdEjemplar().equals(idEjemplar)) {
-                return listaLibros[i];
-            }
+        Publicacion publicacion = buscarPublicacionPorIdEjemplar(idEjemplar);
+        if (publicacion instanceof Libro libro) {
+            return libro;
         }
         return null;
     }
-    public Libro[] consultarTodosLosLibros() {
-        Libro copia[] = new Libro[cardinalLibros];
-        for (int i = 0; i < cardinalLibros; i++) {
-            copia[i] = listaLibros[i];
+
+    public ArrayList<Libro> consultarTodosLosLibros() {
+        ArrayList<Libro> libros = new ArrayList<>();
+        for (Publicacion publicacion : publicaciones) {
+            if (publicacion instanceof Libro libro) {
+                libros.add(libro);
+            }
         }
-        return copia;
+        return libros;
     }
 
-    public void eliminarLibro(String idEjemplor){     
-    
-
-    }
-    public void eliminarLibro(Libro libro){
-
-    }
-    private void eliminarLibroInterno(Libro libro){
-
+    public void eliminarLibro(String idEjemplar) {
+        eliminarLibroInterno(buscarLibroPorIdEjemplar(idEjemplar));
     }
 
+    public void eliminarLibro(Libro libro) {
+        eliminarLibroInterno(libro);
+    }
 
-
+    private void eliminarLibroInterno(Libro libro) {
+        if (libro != null) {
+            publicaciones.remove(libro);
+        }
+    }
 }
