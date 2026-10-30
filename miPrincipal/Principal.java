@@ -436,5 +436,48 @@ public class Principal {
         for(int i=0;i<arreglo_animales2.length;i++){
             arreglo_animales2[i].hacerSonido();
         }
+        ArrayList<Animal> lista_animales = new ArrayList<Animal>();
+        lista_animales.add(perro);
+        lista_animales.add(gato);
+        lista_animales.add(pajaro);
+        System.out.println("Recorro la arrayList de animales usando indices:");
+        for(int i=0;i<lista_animales.size();i++){
+            lista_animales.get(i).hacerSonido();
+
+        }
+        System.out.println("Recorro la arrayList de animales usando iteradores:");
+        for(Animal an:lista_animales){
+            an.hacerSonido();
+
+        }
+        //Animal animal = new Animal(); error no se puede instanciar proque ahora animal es abtracta
+        //animal.hacerSonido();
+        Animal animal1 = new Perro();
+        Animal animal2 = new Gato();
+        Animal animal3 = new Pajaro();
+        animal1.hacerSonido();
+        animal2.hacerSonido();
+        animal3.hacerSonido();
+        animal1.moverse();
+        Animal animal4 = new Perro("Mila");
+        animal4.hacerSonido();
+        animal4.dormir();
+        animal2.setNombre("Preciosa");
+        animal2.dormir();
+        //ejemplo de variable polimorfica
+        Animal animal5 = new Perro("Chocolate");
+        animal5.hacerSonido();
+        animal5 = new Gato("Alejandrita");
+        animal5.hacerSonido();
+        animal5 = new Pajaro("Piolin");
+        animal5.hacerSonido();
+
+        Animal animal6 = new Gato("Tiki");
+        animal6 = new Perro();
+
+
+
+
+
     }
 }

@@ -1,6 +1,9 @@
 package gestionBiblioteca;
 public class Principal{
     public static void main(String args[]){
+        Menu menu = new Menu();
+        menu.iniciar();
+        /* 
         Biblioteca bib1 = new Biblioteca();
         Libro lib1 = new Libro("1","ISBN-1","El llano en llamas","Juan Rulfo");
         Libro lib2 = new Libro("2","ISBN-2","Rayuela","Julio Cortazar");
@@ -31,6 +34,7 @@ public class Principal{
             System.out.println("Si existe el libro y es:"+lib3.devolverDatos());
 
         }
+    */
         
     }
 }

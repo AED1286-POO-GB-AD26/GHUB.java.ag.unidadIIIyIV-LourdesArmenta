@@ -1,5 +1,5 @@
 package gestionBiblioteca;
-public class Libro{
+public class Libro extends Publicacion{
     private String idEjemplar;
     private String isbn;
     private String titulo;
@@ -7,12 +7,23 @@ public class Libro{
     private boolean disponible;
 
     public Libro() {
+        super();
         idEjemplar = "NA";
         isbn = "NA";
-        titulo = "Desconocido";
+        //titulo = "Desconocido";
         autor = "Desconocido";
         disponible = true;
     }
+    
+
+    public Libro(String titulo, int anio, String idEjemplar, String isbn, String autor) {
+        super(titulo, anio);
+        this.idEjemplar = idEjemplar;
+        this.isbn = isbn;
+        this.autor = autor;
+        this.disponible = true;
+    }
+
 
     public Libro(String idEjemplar, String isbn, String titulo, String autor) {
         if (idEjemplar == null || idEjemplar.isBlank()) {
@@ -68,6 +79,14 @@ public class Libro{
         return idEjemplar + " - " + isbn + " - " + titulo + " (" + autor + ") - " +
                 estado;
     }
+
+
+    @Override
+    public int calcularTiempoPrestano() {
+        
+        return 30;
+    }
+    
 
 
 }

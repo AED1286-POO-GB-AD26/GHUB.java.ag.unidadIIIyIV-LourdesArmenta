@@ -1,8 +1,30 @@
 package logica;
 
-public class Animal {
-    public void hacerSonido(){
-        System.out.println("El animal hace un sonido");
+public abstract class Animal {
+    //atributos
+    private String nombre;
+    //Métodos
+    //constructor
+    public Animal(){
+
+    }
+    public Animal(String nombre){
+        this.nombre = nombre;
+
+    }
+    public String getNombre(){
+        return nombre;
+    }
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+
+    }
+    public abstract void hacerSonido();
+    public void moverse(){
+        System.out.println("El animal se mueve");
+    }
+    public final void dormir(){
+        System.out.println(nombre + " esta durmiendo");
     }
     
     
