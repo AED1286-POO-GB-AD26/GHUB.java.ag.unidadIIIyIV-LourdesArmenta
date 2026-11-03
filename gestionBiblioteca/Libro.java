@@ -6,43 +6,19 @@ public class Libro extends Publicacion{
 
     public Libro() {
         super();
-        setIdEjemplar("NA");
         isbn = "NA";
         autor = "Desconocido";
         estado = Estado.DISPONIBLE;
     }
 
-    public Libro(String titulo, int anio, String idEjemplar, String isbn, String autor) {
+    public Libro(String titulo, int anio, String idEjemplar, String isbn, String autor, Estado estado) {
         super(idEjemplar, titulo, anio);
         this.isbn = isbn;
         this.autor = autor;
-        this.estado = Estado.DISPONIBLE;
+        this.estado = estado;
     }
+    ///AQUI ME QUEDE
 
-
-    public Libro(String idEjemplar, String isbn, String titulo, String autor) {
-        if (idEjemplar == null || idEjemplar.isBlank()) {
-            System.out.println("El id del ejemplar no puede ser nulo o estar en blanco");
-            return;
-        }
-        if (isbn == null || isbn.isBlank()) {
-            System.out.println("El isbn no puede ser nulo o estar en blanco");
-            return;
-        }
-        if (titulo == null || titulo.isBlank()) {
-            System.out.println("El título no puede ser nulo o estar en blanco");
-            return;
-        }
-        if (autor == null || autor.isBlank()) {
-            System.out.println("El autor no puede ser nulo o estar en blanco");
-            return;
-        }
-        super.setIdEjemplar(idEjemplar);
-        this.isbn = isbn;
-        super.setTitulo(titulo);
-        this.autor = autor;
-        this.estado = Estado.DISPONIBLE;
-    }
 
     public String getIsbn() {
         return isbn;
