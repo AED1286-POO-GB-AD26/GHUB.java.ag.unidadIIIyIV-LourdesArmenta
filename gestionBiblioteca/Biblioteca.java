@@ -10,8 +10,9 @@ public class Biblioteca{
 
     // Metodo publico delegado: crea el objeto Libro y delega el registro en la
     // sobrecarga que recibe el objeto completo.
-    public void registrarLibro(String idEjemplar, String isbn, String titulo, String autor) {
-        registrarLibro(new Libro(idEjemplar, isbn, titulo, autor));
+    public void registrarLibro(String titulo, int anio, String idEjemplar, String isbn, 
+        String autor, Estado estado) {
+        registrarLibro(new Libro(titulo, anio,  idEjemplar,  isbn,  autor,  estado));
     }
 
     // Punto comun de registro para las distintas formas publicas de recibir un libro.
@@ -19,9 +20,9 @@ public class Biblioteca{
         registrarPublicacion(libro);
     }
 
-    public boolean registrarRevista(String idEjemplar, String issn, String titulo, int anio,
-            String periodicidad) {
-        return registrarPublicacion(new Revista(idEjemplar, issn, titulo, anio, periodicidad));
+    public boolean registrarRevista(String idEjemplar, String issn, String titulo, int anio, 
+        String periodicidad, Estado estado) {
+        return registrarPublicacion(new Revista(idEjemplar, issn, titulo, anio, periodicidad, estado));
     }
 
     public boolean registrarPublicacion(Publicacion publicacion) {
@@ -58,7 +59,7 @@ public class Biblioteca{
     public boolean existePublicacion(String idEjemplar) {
         return buscarPublicacionPorIdEjemplar(idEjemplar) != null;
     }
-
+    ///AQUI ME QUEDE EN LA EXPLICACION///////////////
     public Publicacion buscarPublicacionPorIdEjemplar(String idEjemplar) {
         for (Publicacion publicacion : publicaciones) {
             if (publicacion.getIdEjemplar().equals(idEjemplar)) {
