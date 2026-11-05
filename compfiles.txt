@@ -26,6 +26,7 @@
 ./miTest/AppTest.java
 ./gestionBiblioteca/Revista.java
 ./gestionBiblioteca/Publicacion.java
+./gestionBiblioteca/Estado.java
 ./gestionBiblioteca/Biblioteca.java
 ./gestionBiblioteca/Menu.java
 ./gestionBiblioteca/Principal.java

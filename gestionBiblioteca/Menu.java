@@ -22,13 +22,13 @@ public class Menu {
                     registrarRevista();
                     break;
                 case 3:
-                    consultarTodasLasPublicaciones();
+                    //consultarTodasLasPublicaciones();
                     break;
                 case 4:
-                    buscarPublicacionPorId();
+                    //buscarPublicacionPorId();
                     break;
                 case 5:
-                    eliminarPublicacion();
+                    //eliminarPublicacion();
                     break;
                 case 0:
                     salir = true;
@@ -53,7 +53,6 @@ public class Menu {
         System.out.print(mensaje);
         return scanner.nextLine().trim();
     }
-
     private int leerEntero(String mensaje) {
         System.out.print(mensaje);
         while (!scanner.hasNextInt()) {
@@ -62,7 +61,7 @@ public class Menu {
             System.out.print(mensaje);
         }
         int valor = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); //CONSUME EL ENTER AL INTRODUCIR UN NUMERO POR TECLADO
         return valor;
     }
     public void registrarLibro(){
@@ -71,6 +70,7 @@ public class Menu {
         String titulo = leerTexto("Título: ");
         int anio = leerEntero("Año de publicación: ");
         String autor = leerTexto("Autor: ");
+        /* 
 
         if (datosIncompletos(idEjemplar, isbn, titulo, autor) || anio < 1) {
             System.out.println("Todos los datos son obligatorios.");
@@ -81,6 +81,7 @@ public class Menu {
         if (biblioteca.registrarPublicacion(libro)) {
             System.out.println("Libro registrado correctamente.");
         }
+            */
     }
 
     public void registrarRevista() {
@@ -89,6 +90,7 @@ public class Menu {
         String titulo = leerTexto("Título: ");
         int anio = leerEntero("Año de publicación: ");
         String periodicidad = leerTexto("Periodicidad: ");
+        /* 
 
         if (datosIncompletos(idEjemplar, issn, titulo, periodicidad) || anio < 1) {
             System.out.println("Todos los datos son obligatorios.");
@@ -99,6 +101,7 @@ public class Menu {
         if (biblioteca.registrarPublicacion(revista)) {
             System.out.println("Revista registrada correctamente.");
         }
+            */
     }
 
     private boolean datosIncompletos(String... datos) {

@@ -59,8 +59,17 @@ public class Biblioteca{
     public boolean existePublicacion(String idEjemplar) {
         return buscarPublicacionPorIdEjemplar(idEjemplar) != null;
     }
-    ///AQUI ME QUEDE EN LA EXPLICACION///////////////
+    
     public Publicacion buscarPublicacionPorIdEjemplar(String idEjemplar) {
+        /* 
+        for(int i=0;i<publicaciones.size();i++){
+            if (publicaciones.get(i).getIdEjemplar().equals(idEjemplar)){
+                return publicaciones.get(i);
+            }
+        }
+        */
+       //EL CODIGO COMENTADO ES LO MISMO QUE EL CODIGO DEBAJO
+
         for (Publicacion publicacion : publicaciones) {
             if (publicacion.getIdEjemplar().equals(idEjemplar)) {
                 return publicacion;
@@ -70,8 +79,10 @@ public class Biblioteca{
     }
 
     public ArrayList<Publicacion> consultarTodasLasPublicaciones() {
-        return new ArrayList<>(publicaciones);
+        return publicaciones;
     }
+
+    //AQUI LA DEJOR POR MIENTRAS////
 
     public void eliminarPublicacion(String idEjemplar) {
         Publicacion publicacion = buscarPublicacionPorIdEjemplar(idEjemplar);
