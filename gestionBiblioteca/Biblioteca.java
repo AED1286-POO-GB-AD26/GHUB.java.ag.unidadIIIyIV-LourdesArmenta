@@ -8,23 +8,6 @@ public class Biblioteca{
         publicaciones = new ArrayList<>();
     }
 
-    // Metodo publico delegado: crea el objeto Libro y delega el registro en la
-    // sobrecarga que recibe el objeto completo.
-    public void registrarLibro(String titulo, int anio, String idEjemplar, String isbn, 
-        String autor, Estado estado) {
-        registrarLibro(new Libro(titulo, anio,  idEjemplar,  isbn,  autor,  estado));
-    }
-
-    // Punto comun de registro para las distintas formas publicas de recibir un libro.
-    public void registrarLibro(Libro libro) {
-        registrarPublicacion(libro);
-    }
-
-    public boolean registrarRevista(String idEjemplar, String issn, String titulo, int anio, 
-        String periodicidad, Estado estado) {
-        return registrarPublicacion(new Revista(idEjemplar, issn, titulo, anio, periodicidad, estado));
-    }
-
     public boolean registrarPublicacion(Publicacion publicacion) {
         if (!datosValidos(publicacion)) {
             System.out.println("No se puede registrar una publicación con datos incompletos.");
@@ -37,6 +20,7 @@ public class Biblioteca{
         publicaciones.add(publicacion);
         return true;
     }
+
 
     private boolean estaVacio(String texto) {
         return texto == null || texto.isBlank();
@@ -61,14 +45,16 @@ public class Biblioteca{
     }
     
     public Publicacion buscarPublicacionPorIdEjemplar(String idEjemplar) {
-        /* 
+        
         for(int i=0;i<publicaciones.size();i++){
             if (publicaciones.get(i).getIdEjemplar().equals(idEjemplar)){
                 return publicaciones.get(i);
             }
         }
-        */
+        return null;
+        
        //EL CODIGO COMENTADO ES LO MISMO QUE EL CODIGO DEBAJO
+       /* 
 
         for (Publicacion publicacion : publicaciones) {
             if (publicacion.getIdEjemplar().equals(idEjemplar)) {
@@ -76,13 +62,14 @@ public class Biblioteca{
             }
         }
         return null;
+        */
     }
 
     public ArrayList<Publicacion> consultarTodasLasPublicaciones() {
         return publicaciones;
     }
 
-    //AQUI LA DEJOR POR MIENTRAS////
+
 
     public void eliminarPublicacion(String idEjemplar) {
         Publicacion publicacion = buscarPublicacionPorIdEjemplar(idEjemplar);
@@ -90,6 +77,7 @@ public class Biblioteca{
             publicaciones.remove(publicacion);
         }
     }
+    ///AQUI ME QUEDE EN MI GRUPO DE 10 A 11
 
     public boolean existeLibro(String idEjemplar) {
         return buscarLibroPorIdEjemplar(idEjemplar) != null;

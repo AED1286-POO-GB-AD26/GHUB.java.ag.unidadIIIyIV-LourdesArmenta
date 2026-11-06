@@ -22,13 +22,13 @@ public class Menu {
                     registrarRevista();
                     break;
                 case 3:
-                    //consultarTodasLasPublicaciones();
+                    consultarTodasLasPublicaciones();
                     break;
                 case 4:
                     //buscarPublicacionPorId();
                     break;
                 case 5:
-                    //eliminarPublicacion();
+                    eliminarPublicacion();
                     break;
                 case 0:
                     salir = true;
@@ -70,18 +70,20 @@ public class Menu {
         String titulo = leerTexto("Título: ");
         int anio = leerEntero("Año de publicación: ");
         String autor = leerTexto("Autor: ");
-        /* 
 
         if (datosIncompletos(idEjemplar, isbn, titulo, autor) || anio < 1) {
             System.out.println("Todos los datos son obligatorios.");
             return;
         }
-
-        Libro libro = new Libro(titulo, anio, idEjemplar, isbn, autor);
+         
+        Libro libro = new Libro(titulo, anio, idEjemplar, isbn, autor, Estado.DISPONIBLE);
+        
         if (biblioteca.registrarPublicacion(libro)) {
             System.out.println("Libro registrado correctamente.");
+        }else{
+            System.out.println("No fue posible registrar el Libro!!");
         }
-            */
+            
     }
 
     public void registrarRevista() {
@@ -90,18 +92,20 @@ public class Menu {
         String titulo = leerTexto("Título: ");
         int anio = leerEntero("Año de publicación: ");
         String periodicidad = leerTexto("Periodicidad: ");
-        /* 
-
+        
         if (datosIncompletos(idEjemplar, issn, titulo, periodicidad) || anio < 1) {
             System.out.println("Todos los datos son obligatorios.");
             return;
         }
 
-        Revista revista = new Revista(idEjemplar, issn, titulo, anio, periodicidad);
+        Revista revista = new Revista(idEjemplar, issn, titulo, anio, periodicidad, Estado.DISPONIBLE);
+        
         if (biblioteca.registrarPublicacion(revista)) {
             System.out.println("Revista registrada correctamente.");
+        }else{
+            System.out.println("No fue posible registra la Revista");
         }
-            */
+            
     }
 
     private boolean datosIncompletos(String... datos) {
@@ -112,6 +116,8 @@ public class Menu {
         }
         return false;
     }
+
+    
 
     public void buscarPublicacionPorId() {
         String idEjemplar = leerTexto("Id del ejemplar que desea buscar: ");
