@@ -25,6 +25,8 @@ import logica.Animal;
 import logica.Perro;
 import logica.Gato;
 import logica.Pajaro;
+
+import interfases.Estudiante;
 public class Principal {
     
     public static void main(String[] args) {
@@ -474,6 +476,70 @@ public class Principal {
 
         Animal animal6 = new Gato("Tiki");
         animal6 = new Perro();
+
+        //Ejemplo de uso de Interfases
+
+        interfases.Animal perro3 = new interfases.Perro();
+        perro3.hacerSonido();
+        perro3.moverse();
+        
+
+        interfases.Animal gato3 = new interfases.Gato();
+        gato3.hacerSonido();
+        gato3.moverse();
+
+        perro3 = gato3; //esto es posible porque perro3 es una variable polimorfica
+
+        interfases.Perro perro4 = new interfases.Perro();
+        perro4.hacerSonido();
+        perro4.moverse();
+
+        interfases.Gato gato4 = new interfases.Gato();
+        gato4.hacerSonido();
+        gato4.moverse();
+
+        //perro4=gato4; //esto no es posible proque perro4 NO ES una variable ´polimorfica
+
+        interfases.Cachorro conejito1 = new interfases.Conejito();
+        conejito1.hacerSonido();
+        conejito1.moverse();
+        conejito1.jugar();
+
+        interfases.Conejito conejito2 = new interfases.Conejito();
+        conejito2.hacerSonido();
+        conejito2.moverse();
+        conejito2.jugar();
+
+        //uso de interfase Comparables
+        String nombre1 = "Zulema";
+        String nombre2 = "Zulema";
+        if(nombre1.compareTo(nombre2)>0){
+            System.out.println(nombre1+" es mayor que "+nombre2);
+        }else if(nombre1.compareTo(nombre2)<0){
+            System.out.println(nombre2+ " es mayor que "+nombre1);
+        }else{
+            System.out.println(nombre1 + " es igual que "+nombre2);
+        }
+        //comparar dos estudiantes
+        Estudiante est1 = new Estudiante("Juan",18,85.5);
+        Estudiante est2 = new Estudiante("Juan",18,95.0);
+        if(est1.compareTo(est2)>0){
+            System.out.println(est1.getNombre()+" en base al nombre es Mayor que "+
+                est2.getNombre());
+        }else if(est1.compareTo(est2)<0){
+            System.out.println(est2.getNombre()+" en base al nombre es Mayor que "+
+                est1.getNombre());
+
+        }else{
+            System.out.println(est1.getNombre()+" en base al nombre  es igual que "+
+                est2.getNombre());
+
+        }
+        //FALTA PROBAR PARA ORDENAR UN ARREGLO DE ELEMENTOS COMPARABALES
+        //COMO LOS ESTUDIANTES
+
+
+
 
 
 
