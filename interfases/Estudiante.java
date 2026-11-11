@@ -13,10 +13,11 @@ public class Estudiante implements Comparable<Estudiante>{
     }
     @Override 
     public int compareTo(Estudiante otro){
-        /* 
+        
         int dif = this.edad-otro.edad;//18-15 = 3 // 15-18 = -3 //18-18=0
         return dif;
-        */
+        
+       /* 
        if (this.nombre.compareTo(otro.nombre)>0){
           return 1;
        }else if(this.nombre.compareTo(otro.nombre)<0){
@@ -24,6 +25,7 @@ public class Estudiante implements Comparable<Estudiante>{
        }else{
           return 0;
        }
+          */
     }
     //getter
     public String getNombre() {
@@ -35,6 +37,11 @@ public class Estudiante implements Comparable<Estudiante>{
     public double getPromedio() {
         return promedio;
     }
+    @Override
+    public String toString() {
+        return "Estudiante [nombre=" + nombre + ", edad=" + edad + ", promedio=" + promedio + "]";
+    }
+    
     
 
     

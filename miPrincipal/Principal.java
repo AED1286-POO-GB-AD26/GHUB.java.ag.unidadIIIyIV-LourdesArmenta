@@ -25,7 +25,9 @@ import logica.Animal;
 import logica.Perro;
 import logica.Gato;
 import logica.Pajaro;
-
+import interfases.CriterioEdad;
+import interfases.CriterioEstNombre;
+import interfases.CriterioEstProm;
 import interfases.Estudiante;
 public class Principal {
     
@@ -535,8 +537,38 @@ public class Principal {
                 est2.getNombre());
 
         }
-        //FALTA PROBAR PARA ORDENAR UN ARREGLO DE ELEMENTOS COMPARABALES
-        //COMO LOS ESTUDIANTES
+        //definimo, ordenamos y mostramos un array de estudiantes
+        Estudiante arr[]={new Estudiante("Juan",20,85.0),
+                          new Estudiante("Pedro",18,75.5),
+                          new Estudiante("Alberto",19,70.0)
+                        };
+        interfases.Util.ordenar(arr);
+        //mostrar el arreglo ordenado
+        for(int i=0;i<arr.length;i++){
+            System.out.println(arr[i].toString());
+        }
+        Estudiante arr2[]={new Estudiante("Juan",20,85.0),
+                          new Estudiante("Pedro",18,75.5),
+                          new Estudiante("Alberto",19,70.0)
+                        };
+        interfases.Util.ordenar(arr2,new CriterioEstNombre());
+        System.out.println("Ordenamos en base a nombre");
+        for(int i=0;i<arr2.length;i++){
+            System.out.println(arr2[i].toString());
+        }
+        interfases.Util.ordenar(arr2,new CriterioEstProm());
+        System.out.println("Ordenamos en base a promedio");
+        for(int i=0;i<arr2.length;i++){
+            System.out.println(arr2[i].toString());
+        }
+        interfases.Util.ordenar(arr2,new CriterioEdad());
+        System.out.println("Ordenamos en base a Edad");
+        for(int i=0;i<arr2.length;i++){
+            System.out.println(arr2[i].toString());
+        }
+
+
+       
 
 
 

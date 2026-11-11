@@ -23,6 +23,7 @@
 ./logica/Velero.java
 ./logica/Libro.java
 ./interfases/Animal.java
+./interfases/CriterioEstProm.java
 ./interfases/Conejito.java
 ./interfases/TelefonoInteligente.java
 ./interfases/Estudiante.java
@@ -30,10 +31,13 @@
 ./interfases/Cachorro.java
 ./interfases/Util.java
 ./interfases/Gato.java
+./interfases/CriterioEdad.java
 ./interfases/Perro.java
+./interfases/Criterio.java
 ./interfases/Camara.java
 ./interfases/Telefono.java
 ./interfases/Lamparin.java
+./interfases/CriterioEstNombre.java
 ./miPrincipal/Principal.java
 ./miTest/AppTest.java
 ./gestionBiblioteca/Revista.java

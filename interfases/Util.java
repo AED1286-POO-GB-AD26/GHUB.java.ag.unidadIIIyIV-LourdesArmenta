@@ -15,5 +15,22 @@ public class Util {
             }
         }
     }
+     public static void ordenar(Object arr[], Criterio cr){
+        boolean ordenado = false;
+        while (!ordenado){
+            ordenado = true;
+            for(int i=0,j=arr.length;i<=j;i++,j--){
+                //ahora la decision sobre "quien precede a quien"
+                //la toma la instrancia Criterio cr
+
+                if(cr.comparar(arr[i+1], arr[i]) <0 ){
+                    Object aux = arr[i];
+                    arr[i]=arr[i+1];
+                    arr[i+1] = aux;
+                    ordenado = false;
+               }
+            }
+        }
+    }
     
 }
