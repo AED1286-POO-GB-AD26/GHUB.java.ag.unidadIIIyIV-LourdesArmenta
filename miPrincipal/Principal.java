@@ -34,6 +34,10 @@ import interfases.Automovil;
 import interfases.Motocicleta;
 import interfases.Trailer;
 import interfases.Vehiculo;
+import genericidad.CajaCadenas;
+import genericidad.CajaDobles;
+import genericidad.CajaEnteros;
+import genericidad.Caja;
 public class Principal {
     
     public static void main(String[] args) {
@@ -588,5 +592,25 @@ public class Principal {
         trailer1.conducir();
         trailer1.apagarMotor();
 
+        //DEMOSTRANDO LA GENERICIDAD
+        CajaEnteros cajaEnteros = new CajaEnteros(5);
+        System.out.println("El contenido de la caja = "+cajaEnteros.getDato());
+
+        CajaDobles cajaDobles = new CajaDobles(5.2);
+        System.out.println("El contenido de la caja = "+cajaDobles.getDato());
+
+        CajaCadenas cajaCadenas = new CajaCadenas("Hola a todos!");
+        System.out.println("El contenido de la caja = "+cajaCadenas.getDato());
+
+        Caja<Integer> caja1 = new Caja<Integer>(100);
+        Caja<Double> caja2 = new Caja<Double>(9.81);
+        Caja<String> caja3 = new Caja<String>("Hola a todos!");
+        Caja<Alumno> caja4 = new Caja<Alumno>(new Alumno("Luis", 18, "AAA"));
+
+        System.out.println("El contenido de caja1 = "+caja1.getDato());
+        System.out.println("El contenido de caja2 = "+caja2.getDato());
+        System.out.println("El contenido de caja3 = "+caja3.getDato());
+        System.out.println("El contenido de caja4 = "+caja4.getDato());
+        ///EXPLICAR QUE NO LLAMABA A S SYSO POR ESO NO SE IMORIMIA
     }
 }
