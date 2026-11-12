@@ -29,6 +29,11 @@ import interfases.CriterioEdad;
 import interfases.CriterioEstNombre;
 import interfases.CriterioEstProm;
 import interfases.Estudiante;
+
+import interfases.Automovil;
+import interfases.Motocicleta;
+import interfases.Trailer;
+import interfases.Vehiculo;
 public class Principal {
     
     public static void main(String[] args) {
@@ -566,16 +571,22 @@ public class Principal {
         for(int i=0;i<arr2.length;i++){
             System.out.println(arr2[i].toString());
         }
+        //Demostracion de interfase, abstractas y concreto
+        Vehiculo auto1 = new Automovil("AXL-2450");
+        Vehiculo moto1 = new Motocicleta("MNT-1000");
+        Vehiculo trailer1 = new Trailer("ZZZ-2000");
 
+        auto1.encenderMotor();
+        auto1.conducir();
+        auto1.apagarMotor();
 
-       
+        moto1.encenderMotor();
+        moto1.conducir();
+        moto1.apagarMotor();
 
-
-
-
-
-
-
+        trailer1.encenderMotor();
+        trailer1.conducir();
+        trailer1.apagarMotor();
 
     }
 }

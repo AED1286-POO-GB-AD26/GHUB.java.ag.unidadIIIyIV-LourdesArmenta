@@ -1,5 +1,4 @@
 package interfases;
-
 public class Util {
     public static void ordenar(Comparable arr[]){
         boolean ordenado = false;
