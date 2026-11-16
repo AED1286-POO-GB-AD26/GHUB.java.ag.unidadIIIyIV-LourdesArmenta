@@ -46,6 +46,7 @@
 ./miPrincipal/Principal.java
 ./miTest/AppTest.java
 ./genericidad/CajaCadenas.java
+./genericidad/MiColeccion.java
 ./genericidad/CajaEnteros.java
 ./genericidad/Caja.java
 ./genericidad/CajaDobles.java
