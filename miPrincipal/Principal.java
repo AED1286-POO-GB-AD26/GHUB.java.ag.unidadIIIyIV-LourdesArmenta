@@ -33,11 +33,14 @@ import interfases.Estudiante;
 import interfases.Automovil;
 import interfases.Motocicleta;
 import interfases.Trailer;
+import interfases.Util;
 import interfases.Vehiculo;
 import genericidad.CajaCadenas;
 import genericidad.CajaDobles;
 import genericidad.CajaEnteros;
+import genericidad.Utilidades;
 import genericidad.Caja;
+import genericidad.Terna;
 public class Principal {
     
     public static void main(String[] args) {
@@ -611,6 +614,35 @@ public class Principal {
         System.out.println("El contenido de caja2 = "+caja2.getDato());
         System.out.println("El contenido de caja3 = "+caja3.getDato());
         System.out.println("El contenido de caja4 = "+caja4.getDato());
-        ///EXPLICAR QUE NO LLAMABA A S SYSO POR ESO NO SE IMORIMIA
+        
+        //DEMOSTRANDO un método genérico de una clase NO genérica
+        Integer arreglo_enteros[]={2,4,6,8};
+        System.out.println("Muestra un arreglo de enteros");
+        Utilidades.imprimirArray(arreglo_enteros);
+        Double [] arreglo_dobles ={1.1,2.2,3.3,4.4,5.5,6.6};
+        System.out.println("Muestro un Arreglo de Dobles:");
+        Utilidades.imprimirArray(arreglo_dobles);
+        Alumno arreglo_alumnos[]={new Alumno("Lourdes",58,"AAAA"),
+                        new Alumno("Pedro",20,"BBB"),
+                        new Alumno("Teresa",21,"DDDD")};
+        System.out.println("Muestro un Arreglo de Alumnos:");
+        Utilidades.imprimirArray(arreglo_alumnos);
+
+        //DEMOSTRACION DE LA CLASE TERNA
+        System.out.println("DEMOSTRACION DE TERNA GENERICA");
+        Terna<Integer> terna = new Terna<Integer>(5,10,15);
+        System.out.println(terna);
+        Terna<String> terna2 = new  Terna<>("Hola","Mundo","Generico!");
+        System.out.println(terna2);
+        Terna<Float> terna3 = new Terna<>(1.1F,2.2F,3.3F);
+        System.out.println(terna3);
+        System.out.println("El elemento 2 de Enteros:"+terna.get(2));
+        System.out.println("El elemento 2 de String:"+terna2.get(2));
+        terna2.set("Planeta Tierra",2);
+        System.out.println("Muestro de nuevo la terna de String con el cambio:");
+        System.out.println(terna2);
+        System.out.println("El elemento 4 de Enteros:"+terna.get(4));
+            
+        }
     }
-}
+
