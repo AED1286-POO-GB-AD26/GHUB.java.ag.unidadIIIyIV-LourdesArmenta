@@ -1,11 +1,18 @@
 package gestionBiblioteca;
+import genericidad.MiColeccion;
 import java.util.ArrayList;
+/*
+NOTA: Agregue MiColeccion
+ */
 
 public class Biblioteca{
-    private final ArrayList<Publicacion> publicaciones;
+    private final MiColeccion<Publicacion> publicaciones;
+    // Código anterior:
+    // private final ArrayList<Publicacion> publicaciones;
 
     public Biblioteca(){
-        publicaciones = new ArrayList<>();
+        publicaciones = new MiColeccion<>();
+        // Código anterior: publicaciones = new ArrayList<>();
     }
 
     public boolean registrarPublicacion(Publicacion publicacion) {
@@ -17,7 +24,8 @@ public class Biblioteca{
             System.out.println("Ya existe un ejemplar con el id: " + publicacion.getIdEjemplar());
             return false;
         }
-        publicaciones.add(publicacion);
+        publicaciones.agregar(publicacion);
+        // Código anterior: publicaciones.add(publicacion);
         return true;
     }
 
@@ -43,40 +51,55 @@ public class Biblioteca{
     public boolean existePublicacion(String idEjemplar) {
         return buscarPublicacionPorIdEjemplar(idEjemplar) != null;
     }
-    
-    public Publicacion buscarPublicacionPorIdEjemplar(String idEjemplar) {
-        
-        for(int i=0;i<publicaciones.size();i++){
-            if (publicaciones.get(i).getIdEjemplar().equals(idEjemplar)){
-                return publicaciones.get(i);
-            }
-        }
-        return null;
-        
-       //EL CODIGO COMENTADO ES LO MISMO QUE EL CODIGO DEBAJO
-       /* 
 
-        for (Publicacion publicacion : publicaciones) {
-            if (publicacion.getIdEjemplar().equals(idEjemplar)) {
-                return publicacion;
-            }
+    public Publicacion buscarPublicacionPorIdEjemplar(String idEjemplar) {
+        int indice = buscarIndicePublicacionPorIdEjemplar(idEjemplar);
+        if (indice >= 0) {
+            return publicaciones.obtener(indice);
         }
         return null;
-        */
+
+        /*
+         * Código anterior con ArrayList:
+         * for (int i = 0; i < publicaciones.size(); i++) {
+         *     if (publicaciones.get(i).getIdEjemplar().equals(idEjemplar)) {
+         *         return publicaciones.get(i);
+         *     }
+         * }
+         * return null;
+         */
     }
 
     public ArrayList<Publicacion> consultarTodasLasPublicaciones() {
-        return publicaciones;
+        ArrayList<Publicacion> resultado = new ArrayList<>();
+        for (int i = 0; i < publicaciones.tamaño(); i++) {
+            resultado.add(publicaciones.obtener(i));
+        }
+        return resultado;
+        // Código anterior: return publicaciones;
     }
-
-
 
     public void eliminarPublicacion(String idEjemplar) {
-        Publicacion publicacion = buscarPublicacionPorIdEjemplar(idEjemplar);
-        if (publicacion != null) {
-            publicaciones.remove(publicacion);
+        int indice = buscarIndicePublicacionPorIdEjemplar(idEjemplar);
+        if (indice >= 0) {
+            publicaciones.eliminar(indice);
         }
+        // Código anterior:
+        // Publicacion publicacion = buscarPublicacionPorIdEjemplar(idEjemplar);
+        // if (publicacion != null) {
+        //     publicaciones.remove(publicacion);
+        // }
     }
+
+    private int buscarIndicePublicacionPorIdEjemplar(String idEjemplar) {
+        for (int i = 0; i < publicaciones.tamaño(); i++) {
+            if (publicaciones.obtener(i).getIdEjemplar().equals(idEjemplar)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     ///AQUI ME QUEDE EN MI GRUPO DE 10 A 11
 
     public boolean existeLibro(String idEjemplar) {
@@ -93,11 +116,20 @@ public class Biblioteca{
 
     public ArrayList<Libro> consultarTodosLosLibros() {
         ArrayList<Libro> libros = new ArrayList<>();
-        for (Publicacion publicacion : publicaciones) {
+        for (int i = 0; i < publicaciones.tamaño(); i++) {
+            Publicacion publicacion = publicaciones.obtener(i);
             if (publicacion instanceof Libro libro) {
                 libros.add(libro);
             }
         }
+        /*
+         * Código anterior:
+         * for (Publicacion publicacion : publicaciones) {
+         *     if (publicacion instanceof Libro libro) {
+         *         libros.add(libro);
+         *     }
+         * }
+         */
         return libros;
     }
 
@@ -111,7 +143,11 @@ public class Biblioteca{
 
     private void eliminarLibroInterno(Libro libro) {
         if (libro != null) {
-            publicaciones.remove(libro);
+            int indice = publicaciones.buscar(libro);
+            if (indice >= 0) {
+                publicaciones.eliminar(indice);
+            }
+            // Código anterior: publicaciones.remove(libro);
         }
     }
 }
