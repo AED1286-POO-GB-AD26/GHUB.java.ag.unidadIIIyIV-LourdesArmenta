@@ -15,10 +15,17 @@ public class Biblioteca{
         // Código anterior: publicaciones = new ArrayList<>();
     }
 
-    public boolean registrarPublicacion(Publicacion publicacion) {
+    /**
+     * Registra una publicación después de validar sus datos.
+     *
+     * @param publicacion publicación que se desea registrar
+     * @return true si el registro fue exitoso
+     * @throws DatosInvalidosException si la publicación tiene datos incompletos o inválidos
+     */
+    public boolean registrarPublicacion(Publicacion publicacion) throws DatosInvalidosException {
         if (!datosValidos(publicacion)) {
-            System.out.println("No se puede registrar una publicación con datos incompletos.");
-            return false;
+            // Las excepciones separan la validación de los datos de la lógica de registro.
+            throw new DatosInvalidosException("No se puede registrar una publicación con datos incompletos.");
         }
         if (existePublicacion(publicacion.getIdEjemplar())) {
             System.out.println("Ya existe un ejemplar con el id: " + publicacion.getIdEjemplar());
@@ -36,7 +43,7 @@ public class Biblioteca{
 
     private boolean datosValidos(Publicacion publicacion) {
         if (publicacion == null || estaVacio(publicacion.getIdEjemplar())
-                || estaVacio(publicacion.getTitulo())) {
+                || estaVacio(publicacion.getTitulo()) || publicacion.getAnio() < 1) {
             return false;
         }
         if (publicacion instanceof Libro libro) {
@@ -79,11 +86,19 @@ public class Biblioteca{
         // Código anterior: return publicaciones;
     }
 
-    public void eliminarPublicacion(String idEjemplar) {
+    /**
+     * Elimina una publicación por su id de ejemplar.
+     *
+     * @param idEjemplar identificador de la publicación
+     * @throws PublicacionNoEncontradaException si no existe una publicación con ese id
+     */
+    public void eliminarPublicacion(String idEjemplar) throws PublicacionNoEncontradaException {
         int indice = buscarIndicePublicacionPorIdEjemplar(idEjemplar);
-        if (indice >= 0) {
-            publicaciones.eliminar(indice);
+        if (indice < 0) {
+            throw new PublicacionNoEncontradaException(
+                    "No se encontró una publicación con el id: " + idEjemplar);
         }
+        publicaciones.eliminar(indice);
         // Código anterior:
         // Publicacion publicacion = buscarPublicacionPorIdEjemplar(idEjemplar);
         // if (publicacion != null) {

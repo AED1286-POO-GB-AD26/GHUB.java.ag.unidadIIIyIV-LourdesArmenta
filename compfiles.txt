@@ -55,8 +55,10 @@
 ./genericidad/Terna.java
 ./gestionBiblioteca/Revista.java
 ./gestionBiblioteca/Publicacion.java
+./gestionBiblioteca/PublicacionNoEncontradaException.java
 ./gestionBiblioteca/Estado.java
 ./gestionBiblioteca/Biblioteca.java
+./gestionBiblioteca/DatosInvalidosException.java
 ./gestionBiblioteca/Menu.java
 ./gestionBiblioteca/Principal.java
 ./gestionBiblioteca/Libro.java

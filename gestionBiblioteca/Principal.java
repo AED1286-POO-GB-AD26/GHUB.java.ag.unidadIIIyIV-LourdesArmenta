@@ -1,8 +1,13 @@
 package gestionBiblioteca;
 public class Principal{
     public static void main(String args[]){
-        Menu menu = new Menu();
-        menu.iniciar();
+        try {
+            Menu menu = new Menu();
+            menu.iniciar();
+        } catch (Exception e) {
+            // Captura un error no previsto para evitar que el programa termine sin un mensaje.
+            System.out.println("Ocurrió un error inesperado: " + e.getMessage());
+        }
         /* 
         Biblioteca bib1 = new Biblioteca();
         Libro lib1 = new Libro("1","ISBN-1","El llano en llamas","Juan Rulfo");

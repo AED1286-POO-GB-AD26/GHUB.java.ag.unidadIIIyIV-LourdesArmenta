@@ -1,6 +1,10 @@
 package gestionBiblioteca;
 import java.util.ArrayList;
 import java.util.Scanner;
+// Se lanza cuando el usuario introduce texto u otro tipo distinto del entero solicitado.
+import java.util.InputMismatchException;
+// Se lanza cuando Scanner intenta leer, pero ya no existe entrada disponible (por ejemplo, fin de consola).
+import java.util.NoSuchElementException;
 
 public class Menu {
     private final Biblioteca biblioteca;
@@ -11,34 +15,39 @@ public class Menu {
     }
     public void iniciar() {
         boolean salir = false;
-        while (!salir) {
-            mostrarOpciones();
-            int opcion = leerEntero("Seleccione una opción: ");
-            switch (opcion) {
-                case 1:
-                    registrarLibro();
-                    break;
-                case 2:
-                    registrarRevista();
-                    break;
-                case 3:
-                    consultarTodasLasPublicaciones();
-                    break;
-                case 4:
-                    //buscarPublicacionPorId();
-                    break;
-                case 5:
-                    eliminarPublicacion();
-                    break;
-                case 0:
-                    salir = true;
-                    System.out.println("Saliendo del sistema...");
-                    break;
-                default:
-                    System.out.println("Opción inválida, intente de nuevo.");
+        try {
+            while (!salir) {
+                mostrarOpciones();
+                int opcion = leerEntero("Seleccione una opción: ");
+                switch (opcion) {
+                    case 1:
+                        registrarLibro();
+                        break;
+                    case 2:
+                        registrarRevista();
+                        break;
+                    case 3:
+                        consultarTodasLasPublicaciones();
+                        break;
+                    case 4:
+                        buscarPublicacionPorId();
+                        break;
+                    case 5:
+                        eliminarPublicacion();
+                        break;
+                    case 0:
+                        salir = true;
+                        System.out.println("Saliendo del sistema...");
+                        break;
+                    default:
+                        System.out.println("Opción inválida, intente de nuevo.");
+                }
             }
+        } catch (NoSuchElementException e) {
+            System.out.println("No se recibió más entrada. El programa finalizará.");
+        } finally {
+            scanner.close();
         }
-        scanner.close();
     }
     private void mostrarOpciones() {
         System.out.println("\n===== MENÚ BIBLIOTECA =====");
@@ -54,58 +63,67 @@ public class Menu {
         return scanner.nextLine().trim();
     }
     private int leerEntero(String mensaje) {
-        System.out.print(mensaje);
-        while (!scanner.hasNextInt()) {
-            System.out.println("Debe ingresar un número entero.");
-            scanner.next();
+        while (true) {
             System.out.print(mensaje);
+            try {
+                int valor = scanner.nextInt();
+                scanner.nextLine();
+                return valor;
+            } catch (InputMismatchException e) {
+                // Esta excepción ocurre si el usuario escribe texto donde se espera un entero.
+                System.out.println("Error: debe ingresar un número entero.");
+                scanner.nextLine();
+            }
         }
-        int valor = scanner.nextInt();
-        scanner.nextLine(); //CONSUME EL ENTER AL INTRODUCIR UN NUMERO POR TECLADO
-        return valor;
     }
     public void registrarLibro(){
-        String idEjemplar = leerTexto("Id del ejemplar: ");
-        String isbn = leerTexto("ISBN: ");
-        String titulo = leerTexto("Título: ");
-        int anio = leerEntero("Año de publicación: ");
-        String autor = leerTexto("Autor: ");
+        try {
+            String idEjemplar = leerTexto("Id del ejemplar: ");
+            String isbn = leerTexto("ISBN: ");
+            String titulo = leerTexto("Título: ");
+            int anio = leerEntero("Año de publicación: ");
+            String autor = leerTexto("Autor: ");
 
-        if (datosIncompletos(idEjemplar, isbn, titulo, autor) || anio < 1) {
-            System.out.println("Todos los datos son obligatorios.");
-            return;
+            if (datosIncompletos(idEjemplar, isbn, titulo, autor) || anio < 1) {
+                // Se convierte el dato inválido en una excepción para manejarlo de forma uniforme.
+                throw new DatosInvalidosException("Todos los datos son obligatorios y el año debe ser mayor que cero.");
+            }
+
+            Libro libro = new Libro(titulo, anio, idEjemplar, isbn, autor, Estado.DISPONIBLE);
+
+            if (biblioteca.registrarPublicacion(libro)) {
+                System.out.println("Libro registrado correctamente.");
+            } else {
+                System.out.println("No fue posible registrar el Libro.");
+            }
+        } catch (DatosInvalidosException e) {
+            System.out.println("Error: " + e.getMessage());
         }
-         
-        Libro libro = new Libro(titulo, anio, idEjemplar, isbn, autor, Estado.DISPONIBLE);
-        
-        if (biblioteca.registrarPublicacion(libro)) {
-            System.out.println("Libro registrado correctamente.");
-        }else{
-            System.out.println("No fue posible registrar el Libro!!");
-        }
-            
     }
 
     public void registrarRevista() {
-        String idEjemplar = leerTexto("Id del ejemplar: ");
-        String issn = leerTexto("ISSN: ");
-        String titulo = leerTexto("Título: ");
-        int anio = leerEntero("Año de publicación: ");
-        String periodicidad = leerTexto("Periodicidad: ");
-        
-        if (datosIncompletos(idEjemplar, issn, titulo, periodicidad) || anio < 1) {
-            System.out.println("Todos los datos son obligatorios.");
-            return;
-        }
+        try {
+            String idEjemplar = leerTexto("Id del ejemplar: ");
+            String issn = leerTexto("ISSN: ");
+            String titulo = leerTexto("Título: ");
+            int anio = leerEntero("Año de publicación: ");
+            String periodicidad = leerTexto("Periodicidad: ");
 
-        Revista revista = new Revista(idEjemplar, issn, titulo, anio, periodicidad, Estado.DISPONIBLE);
-        
-        if (biblioteca.registrarPublicacion(revista)) {
-            System.out.println("Revista registrada correctamente.");
-        }else{
-            System.out.println("No fue posible registra la Revista");
+            if (datosIncompletos(idEjemplar, issn, titulo, periodicidad) || anio < 1) {
+                // Se informa al menú cuándo faltan datos o el año no es válido.
+                throw new DatosInvalidosException("Todos los datos son obligatorios y el año debe ser mayor que cero.");
+            }
+
+            Revista revista = new Revista(idEjemplar, issn, titulo, anio, periodicidad, Estado.DISPONIBLE);
+
+            if (biblioteca.registrarPublicacion(revista)) {
+                System.out.println("Revista registrada correctamente.");
+            } else {
+                System.out.println("No fue posible registrar la Revista.");
+            }
+        } catch (DatosInvalidosException e) {
+            System.out.println("Error: " + e.getMessage());
         }
-            
     }
 
     private boolean datosIncompletos(String... datos) {
@@ -120,13 +138,21 @@ public class Menu {
     
 
     public void buscarPublicacionPorId() {
-        String idEjemplar = leerTexto("Id del ejemplar que desea buscar: ");
-        Publicacion publicacion = biblioteca.buscarPublicacionPorIdEjemplar(idEjemplar);
-        if (publicacion == null) {
-            System.out.println("No se encontró una publicación con el id: " + idEjemplar);
-            return;
+        try {
+            String idEjemplar = leerTexto("Id del ejemplar que desea buscar: ");
+            if (idEjemplar.isBlank()) {
+                throw new DatosInvalidosException("El id del ejemplar no puede estar vacío.");
+            }
+            Publicacion publicacion = biblioteca.buscarPublicacionPorIdEjemplar(idEjemplar);
+            if (publicacion == null) {
+                // Una búsqueda sin resultados se presenta como un error esperado, no como un fallo general.
+                throw new PublicacionNoEncontradaException(
+                        "No se encontró una publicación con el id: " + idEjemplar);
+            }
+            System.out.println(publicacion.devolverDatos());
+        } catch (DatosInvalidosException | PublicacionNoEncontradaException e) {
+            System.out.println("Error: " + e.getMessage());
         }
-        System.out.println(publicacion.devolverDatos());
     }
 
     public void consultarTodasLasPublicaciones() {
@@ -141,13 +167,21 @@ public class Menu {
     }
 
     public void eliminarPublicacion() {
-        String idEjemplar = leerTexto("Id del ejemplar que desea eliminar: ");
-        if (!biblioteca.existePublicacion(idEjemplar)) {
-            System.out.println("No se encontró una publicación con el id: " + idEjemplar);
-            return;
+        try {
+            String idEjemplar = leerTexto("Id del ejemplar que desea eliminar: ");
+            if (idEjemplar.isBlank()) {
+                throw new DatosInvalidosException("El id del ejemplar no puede estar vacío.");
+            }
+            if (!biblioteca.existePublicacion(idEjemplar)) {
+                // Evita que la operación de eliminación continúe con un id inexistente.
+                throw new PublicacionNoEncontradaException(
+                        "No se encontró una publicación con el id: " + idEjemplar);
+            }
+            biblioteca.eliminarPublicacion(idEjemplar);
+            System.out.println("Publicación eliminada correctamente.");
+        } catch (DatosInvalidosException | PublicacionNoEncontradaException e) {
+            System.out.println("Error: " + e.getMessage());
         }
-        biblioteca.eliminarPublicacion(idEjemplar);
-        System.out.println("Publicación eliminada correctamente.");
     }
 
     public void buscarLibroPorId() {
